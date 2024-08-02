@@ -50,8 +50,6 @@ def detect_leds(picamera2, num_frames, camera_framerate, led_frequencies, freque
         red_mask = get_red_mask(image)
         red_image = cv2.bitwise_and(image, image, mask=red_mask)
         
-        cv2.imshow("Red Image", red_image)
-        
         gray = cv2.cvtColor(red_image, cv2.COLOR_BGR2GRAY)
         
         _, thresholded = cv2.threshold(gray, 50, 255, cv2.THRESH_BINARY)
