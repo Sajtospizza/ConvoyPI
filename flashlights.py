@@ -1,6 +1,6 @@
 import picfuncs as pf
 import cv2
-import picamera2
+from picamera2 import Picamera2
 
 # Initialize the camera
 print("Starting camera...")
