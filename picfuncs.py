@@ -2,6 +2,8 @@
 
 # Imports
 import cv2
+import socket
+import json
 import numpy as np
 from collections import deque
 from scipy.fft import fft
@@ -11,9 +13,9 @@ from picamera2 import Picamera2
 def get_red_mask(image):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     # Define HSV range for detecting red colors
-    lower_red1 = np.array([0, 50, 50])  # Lower bound for red in HSV
+    lower_red1 = np.array([0, 160, 160])  # Lower bound for red in HSV
     upper_red1 = np.array([10, 255, 255])  # Upper bound for red in HSV
-    lower_red2 = np.array([160, 50, 50])  # Lower bound for red in HSV
+    lower_red2 = np.array([160, 120, 120])  # Lower bound for red in HSV
     upper_red2 = np.array([180, 255, 255])  # Upper bound for red in HSV
 
     mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
@@ -64,9 +66,13 @@ def detect_leds(picamera2, num_frames, camera_framerate, led_frequencies, freque
     
     middle_points = {}
     for freq, positions in led_positions.items():
-        # Calculate the middle point of the LED positions
-        middle_point = np.mean(positions, axis=0)
-        middle_points[freq] = middle_point
+        if positions.size > 0:
+            avg_y = int(np.mean(positions[:, 0]))
+            avg_x = int(np.mean(positions[:, 1]))
+            middle_points[freq] = [(avg_y, avg_x)]
+        else:
+            middle_points[freq] = []
+    
     return middle_points
 
 # Track LEDs function
@@ -101,3 +107,9 @@ def draw_average_positions(frame, led_positions):
             avg_x = int(np.mean([pos[1] for pos in positions]))
             avg_y = int(np.mean([pos[0] for pos in positions]))
             cv2.circle(frame, (avg_x, avg_y), 5, (0, 255, 0), -1)
+
+# Send data function
+def send_data(data, host, port):
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        s.connect((host, port))
+        s.sendall(json.dumps(data).encode("utf-8"))
