@@ -10,14 +10,14 @@ picamera2.start()
 
 # Camera parameters
 camera_framerate = 22  # Adjustable
-num_frames = 90  
+num_frames = 60 # Adjustable, not too high
 
 # Frequencies to adjust
-led_frequencies = [2] 
+led_frequencies = [1,2,3] 
 frequency_tolerance = 0.5 
 
 # Init server adress
-server_address = "172.22.0.188"
+server_address = "172.22.0.5"
 server_port = 6944
 
 # Console output for debugging

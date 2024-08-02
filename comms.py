@@ -1,13 +1,14 @@
 import socket
 import json
 
-buffersize = 1024
-ServerAddress = ("172.22.0.188", 6944)
-SSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-SSocket.bind(ServerAddress)
+def setup_client(server_address, server_port):
+    SenderSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    SenderSocket.bind((server_address, server_port))
+    return SenderSocket
 
-print("Server up and waiting...")
-while True:
-    data, address = SSocket.recvfrom(buffersize)
+def receive_data(SenderSocket, buffersize):
+    data, address = SenderSocket.recvfrom(buffersize)
     data = json.loads(data.decode("utf-8"))
-    print(f"Received: {data}")
+    return data
+
+    
