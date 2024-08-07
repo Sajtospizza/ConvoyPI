@@ -13,11 +13,11 @@ camera_framerate = 22  # Adjustable
 num_frames = 60 # Adjustable, not too high
 
 # Frequencies to adjust
-led_frequencies = [3] 
+led_frequencies = [2] 
 frequency_tolerance = 0.3 
 
 # Init server adress
-server_address = "172.22.0.5"
+server_address = "172.22.0.25"
 server_port = 6944
 
 # Console output for debugging

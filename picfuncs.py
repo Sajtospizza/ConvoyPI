@@ -9,6 +9,8 @@ from collections import deque
 from scipy.fft import fft
 from picamera2 import Picamera2
 
+# Led track functions
+
 # Red mask function
 def get_red_mask(image):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -56,7 +58,8 @@ def detect_leds(picamera2, num_frames, camera_framerate, led_frequencies, freque
         
         _, thresholded = cv2.threshold(gray, 50, 255, cv2.THRESH_BINARY)
         
-        #cv2.imshow("Thresholded Image", thresholded)
+        # Debug thresholed image
+        cv2.imshow("Thresholded Image", thresholded)
         
         frame_buffer.append(thresholded)
         
@@ -113,3 +116,6 @@ def send_data(data, host, port):
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         s.connect((host, port))
         s.sendall(json.dumps(data).encode("utf-8"))
+
+# Aruco functions
+
