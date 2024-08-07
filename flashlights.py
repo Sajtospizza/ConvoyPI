@@ -13,8 +13,8 @@ camera_framerate = 22  # Adjustable
 num_frames = 60 # Adjustable, not too high
 
 # Frequencies to adjust
-led_frequencies = [1,2,3] 
-frequency_tolerance = 0.5 
+led_frequencies = [3] 
+frequency_tolerance = 0.3 
 
 # Init server adress
 server_address = "172.22.0.5"
@@ -34,7 +34,7 @@ while True:
     led_positions = pf.track_leds(image, led_positions)
     
     # Print output for debug
-    print(led_positions)
+    #print(led_positions)
 
     # Send message
     pf.send_data(led_positions, server_address, server_port)
@@ -42,7 +42,6 @@ while True:
     # Draw average positions
     pf.draw_average_positions(image, led_positions)
     
-    cv2.imshow('LED Tracking', image)
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break

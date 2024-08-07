@@ -16,7 +16,7 @@ def get_red_mask(image):
     lower_red1 = np.array([0, 160, 160])  # Lower bound for red in HSV
     upper_red1 = np.array([10, 255, 255])  # Upper bound for red in HSV
     lower_red2 = np.array([160, 120, 120])  # Lower bound for red in HSV
-    upper_red2 = np.array([180, 255, 255])  # Upper bound for red in HSV
+    upper_red2 = np.array([170, 220, 220])  # Upper bound for red in HSV
 
     mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
     mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
@@ -29,13 +29,15 @@ def identify_led_positions(frames, camera_framerate, led_frequencies, frequency_
     num_frames = len(frames)
     fft_frames = fft(frames, axis=0)
     magnitude = np.abs(fft_frames)
-    dominant_frequencies = np.argmax(magnitude[1:num_frames//2], axis=0) + 1  # Skip the zero frequency
+    dominant_frequencies = np.argmax(magnitude[1:num_frames//2], axis=0) + 1 # Skip the zero frequency
     frequencies = dominant_frequencies * (camera_framerate / num_frames)
+    
     
     led_positions = {}
     for freq in led_frequencies:
         mask = (frequencies > (freq - frequency_tolerance)) & (frequencies < (freq + frequency_tolerance))
         coords = np.column_stack(np.where(mask))
+        print(coords)
         led_positions[freq] = coords
     return led_positions
 
@@ -54,7 +56,7 @@ def detect_leds(picamera2, num_frames, camera_framerate, led_frequencies, freque
         
         _, thresholded = cv2.threshold(gray, 50, 255, cv2.THRESH_BINARY)
         
-        cv2.imshow("Thresholded Image", thresholded)
+        #cv2.imshow("Thresholded Image", thresholded)
         
         frame_buffer.append(thresholded)
         
