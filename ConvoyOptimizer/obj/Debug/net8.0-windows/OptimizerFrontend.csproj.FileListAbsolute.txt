@@ -1,0 +1,16 @@
+D:\ConvoyV3\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.exe
+D:\ConvoyV3\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.deps.json
+D:\ConvoyV3\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.runtimeconfig.json
+D:\ConvoyV3\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.dll
+D:\ConvoyV3\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.pdb
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\ConvoyOptimizer.Form1.resources
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.csproj.GenerateResource.cache
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.GeneratedMSBuildEditorConfig.editorconfig
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.AssemblyInfoInputs.cache
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.AssemblyInfo.cs
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.csproj.CoreCompileInputs.cache
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.dll
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\refint\OptimizerFrontend.dll
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.pdb
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.genruntimeconfig.cache
+D:\ConvoyV3\ConvoyOptimizer\obj\Debug\net8.0-windows\ref\OptimizerFrontend.dll

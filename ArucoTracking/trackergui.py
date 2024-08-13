@@ -3,11 +3,11 @@ import comms
 import sys
 
 # Init data communication
-server_address = "172.22.0.25"
+server_address = "172.22.0.54"
 server_port = 6944
 SenderSocket = comms.setup_client(server_address, server_port)
 
-# Initalize data dictionary
+# Initalize data dictionaryyy
 previous_data = {}
 data = {}
 
@@ -15,7 +15,7 @@ data = {}
 pygame.init()
 
 # Set up the drawing window and title
-screen = pygame.display.set_mode([820, 620])
+screen = pygame.display.set_mode([1000, 500])
 pygame.display.set_caption("LED Tracker")
 
 # Run until the user asks to quit
@@ -41,8 +41,9 @@ while running:
         cars[key] = value
 
     positions = list(cars.values())
-    positions = [(x/2, y/2) for x, y in positions]
+    positions = [(x, y) for x, y in positions]
 
+    print(positions)
     for pos in positions:
         pygame.draw.circle(screen, (0, 0, 0), pos, 5)
     
