@@ -9,37 +9,31 @@ namespace OptimizerFrontend.BackendLib
     internal class Factory
     {
         public int Id { get; set; }
-        public int StartPoint { get; set; }
-        public int EndPoint { get; set; }
-        public int ProcessTime { get; set; } // in milliseconds
+
+        public PositionNode StartPoint { get; set; }
+        public PositionNode EndPoint { get; set; }
+
+        public int ProcessTime { get; set; } // in seconds
         public bool IsWorking { get; set; }
 
-        public Factory(int id, int startPoint, int endPoint, int processTime, bool isWorking)
+        public int InputQueueLength { get; set; }
+        public int OutputQueueLength { get; set; }
+
+        public Queue<int> InputQueue { get; set; }
+        public Queue<int> OutputQueue { get; set; }
+
+        public Factory(int id, PositionNode input, PositionNode output, int processTime, bool isWorking, int InputQueueLength, int OutputQueueLength)
         {
             Id = id;
-            StartPoint = startPoint;
-            EndPoint = endPoint;
+            StartPoint = input;
+            EndPoint = output;
             ProcessTime = processTime;
             IsWorking = isWorking;
+            InputQueue = new Queue<int>(InputQueueLength);
+            OutputQueue = new Queue<int>(OutputQueueLength);
         }
 
-        public void Processing()
-        {
-            IsWorking = true;
-            Task.Run(async () =>
-            {
-                try
-                {
-                    // Wait for the processTime to elapse
-                    await Task.Delay(ProcessTime);
 
-                    IsWorking = false;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"An error occurred: {ex.Message}");
-                }
-            });
-        }
     }
 }
+

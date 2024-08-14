@@ -29,7 +29,7 @@ namespace ConvoyOptimizer
             int factory1ProcessTime = int.Parse(textBox2.Text);
             int factory2ProcessTime = int.Parse(textBox3.Text);
 
-            Engine engine = new Engine(resourceInterval, factory1ProcessTime, factory2ProcessTime);
+            Optimizer engine = new Optimizer(resourceInterval, factory1ProcessTime, factory2ProcessTime,1,1,1,1);
             engine.Start();
         }
 

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OptimizerFrontend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9fe7212de9b14220732e12311e48138d8d18598")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9fc85f2935ee576e39cc28465ecd5d3fd042e24")]
 [assembly: System.Reflection.AssemblyProductAttribute("OptimizerFrontend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OptimizerFrontend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,15 @@
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\bin\Debug\net8.0\sheesh.exe
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\bin\Debug\net8.0\sheesh.deps.json
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\bin\Debug\net8.0\sheesh.runtimeconfig.json
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\bin\Debug\net8.0\sheesh.dll
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\bin\Debug\net8.0\sheesh.pdb
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\sheesh.GeneratedMSBuildEditorConfig.editorconfig
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\sheesh.AssemblyInfoInputs.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\sheesh.AssemblyInfo.cs
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\sheesh.csproj.CoreCompileInputs.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\sheesh.sourcelink.json
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\sheesh.dll
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\refint\sheesh.dll
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\sheesh.pdb
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\sheesh.genruntimeconfig.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\sheesh\obj\Debug\net8.0\ref\sheesh.dll

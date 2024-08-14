@@ -4,7 +4,7 @@ from cv2 import aruco
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
-aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_50)
+aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_50)
 
 fig = plt.figure()
 nx = 3

@@ -10,32 +10,40 @@ namespace OptimizerFrontend.BackendLib
     {
         public int Id { get; set; }
         public MovementState State { get; set; }
-        public Postion Position { get; set; }
+        public Point2D Pos { get; set; }
+
+        public int delivering { get; set; }
+
         public enum MovementState
         {
-            Parking = 0,
             Moving = 1,
             Waiting = 2,
             Idle = 3
         }
-        public enum Postion
-        {
-            SpawnPickup = 1,
-            FirstPutdown = 2,
-            FirstPickup = 3,
-            SecondPutdown = 4,
-            SecondPickup = 5,
-            EndPutdown = 6,
-            Park1 = 7,
-            Park2 = 8
-        }
 
-        public Car(int id, MovementState state, Postion position)
+        public Car(int id, MovementState state, Point2D point, int Delivering)
         {
             Id = id;
             State = state;
-            Position = position;
+            Pos = point;
+            delivering = Delivering;
         }
+
+        public void StartMoving(Point2D newPos)
+        {
+            State = MovementState.Moving;
+            // TODO: Implement moving logic
+        }
+
+        public bool HasArrivedAt(Point2D pos)
+        {
+            return pos == Pos;
+        }
+
+
+
+
+
 
     }
 }
