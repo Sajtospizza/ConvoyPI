@@ -12,7 +12,8 @@ namespace OptimizerFrontend.BackendLib
     {
         public static System.Timers.Timer timer;
         public static double elapsedSeconds = 0;
-        public static double prevSeconds = 0;
+        public static double prevSecondsSpawn = 0;
+        public static double prevSecondsTake = 0;
         public static void RunTimer()
         {
             // Create and configure the timer

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,12 @@ namespace OptimizerFrontend.BackendLib
         public void StartMoving(Point2D newPos)
         {
             State = MovementState.Moving;
+            // Placeholder for moving logic
+            Thread.Sleep(3000);
             // TODO: Implement moving logic
+            Pos = newPos;
+            Debug.WriteLine($"Car {Id} has arrived at {Pos}");
+            State = MovementState.Waiting;
         }
 
         public bool HasArrivedAt(Point2D pos)

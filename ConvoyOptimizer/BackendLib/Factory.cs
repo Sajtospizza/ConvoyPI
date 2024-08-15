@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,8 +30,21 @@ namespace OptimizerFrontend.BackendLib
             EndPoint = output;
             ProcessTime = processTime;
             IsWorking = isWorking;
+            this.InputQueueLength = InputQueueLength;
+            this.OutputQueueLength = OutputQueueLength;
             InputQueue = new Queue<int>(InputQueueLength);
             OutputQueue = new Queue<int>(OutputQueueLength);
+        }
+
+        public void Process(int resource)
+        {
+            Debug.WriteLine("Factory {0} is processing resource {1}", Id, resource);
+            IsWorking = true;
+            // Placeholder for processing logic
+            System.Threading.Thread.Sleep(ProcessTime * 1000);
+            OutputQueue.Enqueue(resource);
+            IsWorking = false;
+            Debug.WriteLine("Factory {0} has processed resource {1}", Id, resource);
         }
 
 
