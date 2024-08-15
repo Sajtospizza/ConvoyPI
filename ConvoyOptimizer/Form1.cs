@@ -1,4 +1,5 @@
 using OptimizerFrontend.BackendLib;
+using OptimizerFrontend.DrawingLib;
 using System.Diagnostics;
 
 namespace ConvoyOptimizer
@@ -22,6 +23,7 @@ namespace ConvoyOptimizer
             label8.Text = "Factory 2 output queue length";
             label9.Text = "Product takeaway time";
             label10.Text = "Product queue length";
+            label11.Text = "Number of cars";
 
             // Default values
             textBox1.Text = "5";
@@ -34,6 +36,7 @@ namespace ConvoyOptimizer
             textBox8.Text = "3";
             textBox9.Text = "5";
             textBox10.Text = "3";
+            textBox11.Text = "3";
 
 
             button1.Text = "Calculate";
@@ -51,10 +54,15 @@ namespace ConvoyOptimizer
             int resourceQueueLength = int.Parse(textBox4.Text);
             int productQueueLength = int.Parse(textBox10.Text);
             int productTakeAwayTime = int.Parse(textBox9.Text);
+            int numberOfCars = int.Parse(textBox11.Text);
 
-            Optimizer engine = new Optimizer(resourceInterval, resourceQueueLength,productTakeAwayTime, productQueueLength,factory1ProcessTime, factory2ProcessTime,factory1InputQueueLength,factory1OutputQueueLength,factory2InputQueueLength,factory2OutputQueueLength);
-            engine.Setup();
-            engine.Start();
+            //Optimizer engine = new Optimizer(resourceInterval, resourceQueueLength,productTakeAwayTime, productQueueLength,factory1ProcessTime, factory2ProcessTime,factory1InputQueueLength,factory1OutputQueueLength,factory2InputQueueLength,factory2OutputQueueLength, numberOfCars);
+            //engine.Setup();
+            //engine.Start();
+
+            DrawBase drawer = new DrawBase(pictureBox1.Width, pictureBox1.Height);
+            Debug.WriteLine("Size: {0} x {1}", pictureBox1.Width, pictureBox1.Height);
+            drawer.DrawMap(pictureBox1);
         }
 
 
