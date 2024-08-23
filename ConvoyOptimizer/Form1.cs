@@ -11,6 +11,9 @@ namespace ConvoyOptimizer
             InitializeComponent();
         }
 
+        // Variables
+        Optimizer engine;
+      
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.Text = "Resource interval in seconds";
@@ -40,6 +43,11 @@ namespace ConvoyOptimizer
 
 
             button1.Text = "Calculate";
+
+            timer1.Interval = 100;
+
+            DrawBase drawer = new DrawBase(pictureBox1.Width, pictureBox1.Height);
+            drawer.DrawMap(pictureBox1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -56,15 +64,29 @@ namespace ConvoyOptimizer
             int productTakeAwayTime = int.Parse(textBox9.Text);
             int numberOfCars = int.Parse(textBox11.Text);
 
-            //Optimizer engine = new Optimizer(resourceInterval, resourceQueueLength,productTakeAwayTime, productQueueLength,factory1ProcessTime, factory2ProcessTime,factory1InputQueueLength,factory1OutputQueueLength,factory2InputQueueLength,factory2OutputQueueLength, numberOfCars);
-            //engine.Setup();
-            //engine.Start();
+            progressBar1.Maximum = factory1ProcessTime * 1000;
+            progressBar2.Maximum = factory2ProcessTime * 1000;
 
-            DrawBase drawer = new DrawBase(pictureBox1.Width, pictureBox1.Height);
-            Debug.WriteLine("Size: {0} x {1}", pictureBox1.Width, pictureBox1.Height);
-            drawer.DrawMap(pictureBox1);
+            engine = new Optimizer(resourceInterval, resourceQueueLength, productTakeAwayTime, productQueueLength, factory1ProcessTime, factory2ProcessTime, factory1InputQueueLength, factory1OutputQueueLength, factory2InputQueueLength, factory2OutputQueueLength, numberOfCars);
+            engine.Setup();
+            Debug.WriteLine("Starting timer");
+            timer1.Start();
+            Debug.WriteLine("Starting engine");
+            Task.Run(() => engine.Start());
+
+
         }
 
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            progressBar1.Value = (int)( ((double)engine.Factories[0].currentPercent) / 100 * engine.Factory1ProcessTime * 1000);
+            progressBar2.Value = (int)(((double)engine.Factories[1].currentPercent) / 100 * engine.Factory2ProcessTime * 1000);
+
+        }
     }
 }

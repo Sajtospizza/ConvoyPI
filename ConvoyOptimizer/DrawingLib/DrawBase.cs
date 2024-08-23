@@ -1,6 +1,8 @@
 ﻿using OptimizerFrontend.BackendLib;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,47 +24,65 @@ namespace OptimizerFrontend.DrawingLib
             g = Graphics.FromImage(bm);
             g.TranslateTransform(0, height);
             g.ScaleTransform(1, -1);
+
+
         }
 
         public void DrawMap(PictureBox picturebox)
         {
-            // Draw rectangles
-            g.DrawRectangle(Pens.Black, 150, 75, 100, 150);
-            g.DrawRectangle(Pens.Black, 450, 75, 100, 150);
 
-            // Draw circles
-            g.DrawEllipse(Pens.Black, 175, 13, 50, 50);
-            g.DrawEllipse(Pens.Black, 475, 13, 50, 50);
+            // Init drawing tools
+            int factorysize = 60;
+            int nodesize = 10;
+            Pen pen = new Pen(Color.Black, 1);
+            Brush brush = new SolidBrush(Color.Red);
+            Brush brush2 = new SolidBrush(Color.Black);
+            Font font = new Font("Arial", 8, FontStyle.Regular);
+            Font font2 = new Font("Arial", 12, FontStyle.Regular);
 
-            g.DrawEllipse(Pens.Black, 475, 237, 50, 50);
-            g.DrawEllipse(Pens.Black, 175, 237, 50, 50);
+            // Draw the map
+            g.DrawArc(pen, width / 4 - height / 4, height / 2 - height / 4, height / 2,  height / 2, 90,180);
+            g.DrawArc(pen, 3 * width / 4 - height / 4, height / 2 - height / 4, height / 2,  height / 2, 270,180);
+            g.DrawLine(pen, width/4 , height/2 - height/4, 3 * width / 4, height / 2 + height / 4);
+            g.DrawLine(pen, width/4 , height/2 + height/4, 3 * width / 4 , height / 2 - height / 4);
+            g.DrawLine(pen, width / 4, height / 2 + height/4, 3 * width / 4 , height / 2 + height/4);
+            g.DrawLine(pen, width / 4, height / 2 - height/4, 3 * width / 4 , height / 2 - height/4);
 
-            g.DrawEllipse(Pens.Black, 325, 237, 50, 50);
-            g.DrawEllipse(Pens.Black, 325, 13, 50, 50);
+            // Draw the factories and their nodes
+            g.TranslateTransform(width / 4, height / 2);
+            g.RotateTransform(-30);
+            g.DrawRectangle(pen, -factorysize / 2, - factorysize , factorysize, 2 * factorysize);
+            g.FillEllipse(brush, - nodesize / 2, -height / 4 - nodesize / 2, nodesize, nodesize);
+            g.FillEllipse(brush, -nodesize / 2, height / 4 - nodesize, nodesize, nodesize);
+            g.ScaleTransform(1, -1);
+            g.DrawString("2", font, brush2, -nodesize, -height / 4 - 2 * nodesize + nodesize);
+            g.DrawString("1", font, brush2, -nodesize, height / 4 - 2 * nodesize - nodesize);
+            g.DrawString("Factory 1", font2, brush2, -factorysize / 2, -factorysize - 20);
+            g.ScaleTransform(1, -1);
+            g.RotateTransform(30);
+            g.TranslateTransform(width / 2, 0);
+            g.RotateTransform(-30);
+            g.DrawRectangle(pen, -factorysize / 2, -factorysize, factorysize, 2 * factorysize);
+            g.FillEllipse(brush, -nodesize / 2, -height / 4, nodesize, nodesize);
+            g.FillEllipse(brush, -nodesize / 2, height / 4 - nodesize / 2, nodesize, nodesize);
+            g.ScaleTransform(1, -1);
+            g.DrawString("4", font, brush2, -nodesize, -height / 4 - 2 * nodesize + 2 * nodesize);
+            g.DrawString("3", font, brush2, -nodesize, height / 4 - 2 * nodesize - nodesize);
+            g.DrawString("Factory 2", font2, brush2, -factorysize / 2, -factorysize - 20);
+            g.ScaleTransform(1, -1);
+            g.RotateTransform(30);
+            g.TranslateTransform(-3 * width / 4, - height / 2);
 
-            // Set up font for drawing numbers
-            Font font = new Font("Arial", 16);
-            Brush brush = Brushes.Black;
 
-            // Reverse the flip temporarily
+            // Draw nodes
+            
+            g.FillEllipse(brush, width / 4 - nodesize / 2, height / 2 - height / 4 - nodesize / 2, nodesize, nodesize);
+            g.FillEllipse(brush, 3 * width / 4 - nodesize / 2, height / 2 + height / 4 - nodesize / 2, nodesize, nodesize);
+            g.ScaleTransform(1, -1);
+            g.DrawString("0", font, brush2, width / 4, -(height / 2 - height / 4 - 2 *nodesize));
+            g.DrawString("5", font, brush2, 3 * width / 4 - nodesize, -( height / 2 + height / 4 + 2 * nodesize));
             g.ScaleTransform(1, -1);
 
-            // Draw numbers inside the circles with adjusted y-coordinates
-            g.DrawString("1", font, brush, 190, -28);   // Inside first circle
-            g.DrawString("2", font, brush, 490, -28);   // Inside second circle
-
-            g.DrawString("3", font, brush, 490, -252);  // Inside third circle
-            g.DrawString("4", font, brush, 190, -252);  // Inside fourth circle
-
-            g.DrawString("5", font, brush, 340, -252);  // Inside fifth circle
-            g.DrawString("6", font, brush, 340, -28);   // Inside sixth circle
-
-            // Draw numbers next to the rectangles with adjusted y-coordinates
-            g.DrawString("7", font, brush, 260, -140);  // Next to first rectangle
-            g.DrawString("8", font, brush, 560, -140);  // Next to second rectangle
-
-            // Reverse the flip back to the original state
-            g.ScaleTransform(1, -1);
 
             // Assign the bitmap to the PictureBox
             picturebox.Image = bm;

@@ -24,7 +24,7 @@ namespace OptimizerFrontend.BackendLib
         public int Factory2InputQueueLength { get; set; } = fact2in;
         public int Factory2OutputQueueLength { get; set; } = fact2out;
         public int numberOfCars { get; set; } = numberofcars;
-
+        
         // Lists and queues
         public List<Factory> Factories { get; set; }
         public List<Car> Cars { get; set; }
@@ -34,6 +34,7 @@ namespace OptimizerFrontend.BackendLib
 
         // Dynamic values
         public int resourceIndex = 0;
+        public int factory1Percent = 0;
 
         // Setup function
         public void Setup()

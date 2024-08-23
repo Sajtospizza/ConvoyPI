@@ -31,3 +31,4 @@ D:\ConvoyPI\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.dll
 D:\ConvoyPI\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.pdb
 D:\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.genruntimeconfig.cache
 D:\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\ref\OptimizerFrontend.dll
+D:\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.Properties.Resources.resources
