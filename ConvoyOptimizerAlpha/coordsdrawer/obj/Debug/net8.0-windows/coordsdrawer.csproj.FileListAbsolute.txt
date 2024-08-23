@@ -1,0 +1,17 @@
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\bin\Debug\net8.0-windows\coordsdrawer.exe
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\bin\Debug\net8.0-windows\coordsdrawer.deps.json
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\bin\Debug\net8.0-windows\coordsdrawer.runtimeconfig.json
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\bin\Debug\net8.0-windows\coordsdrawer.dll
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\bin\Debug\net8.0-windows\coordsdrawer.pdb
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.Form1.resources
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.csproj.GenerateResource.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.GeneratedMSBuildEditorConfig.editorconfig
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.AssemblyInfoInputs.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.AssemblyInfo.cs
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.csproj.CoreCompileInputs.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.sourcelink.json
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.dll
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\refint\coordsdrawer.dll
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.pdb
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\coordsdrawer.genruntimeconfig.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\coordsdrawer\obj\Debug\net8.0-windows\ref\coordsdrawer.dll

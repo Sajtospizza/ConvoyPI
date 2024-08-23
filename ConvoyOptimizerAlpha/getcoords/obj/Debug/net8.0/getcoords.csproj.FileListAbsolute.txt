@@ -1,0 +1,15 @@
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\bin\Debug\net8.0\getcoords.exe
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\bin\Debug\net8.0\getcoords.deps.json
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\bin\Debug\net8.0\getcoords.runtimeconfig.json
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\bin\Debug\net8.0\getcoords.dll
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\bin\Debug\net8.0\getcoords.pdb
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\getcoords.GeneratedMSBuildEditorConfig.editorconfig
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\getcoords.AssemblyInfoInputs.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\getcoords.AssemblyInfo.cs
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\getcoords.csproj.CoreCompileInputs.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\getcoords.sourcelink.json
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\getcoords.dll
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\refint\getcoords.dll
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\getcoords.pdb
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\getcoords.genruntimeconfig.cache
+D:\ConvoyPI\ConvoyOptimizerAlpha\getcoords\obj\Debug\net8.0\ref\getcoords.dll

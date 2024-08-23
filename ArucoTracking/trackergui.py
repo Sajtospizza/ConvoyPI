@@ -3,7 +3,7 @@ import comms
 import sys
 
 # Init data communication
-server_address = "172.22.0.54"
+server_address = "172.22.0.192"
 server_port = 6944
 SenderSocket = comms.setup_client(server_address, server_port)
 
@@ -15,7 +15,7 @@ data = {}
 pygame.init()
 
 # Set up the drawing window and title
-screen = pygame.display.set_mode([1000, 500])
+screen = pygame.display.set_mode([1300, 800])
 pygame.display.set_caption("LED Tracker")
 
 # Run until the user asks to quit

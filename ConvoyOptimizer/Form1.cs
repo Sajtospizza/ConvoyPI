@@ -1,4 +1,5 @@
 using OptimizerFrontend.BackendLib;
+using OptimizerFrontend.CommsLib;
 using OptimizerFrontend.DrawingLib;
 using System.Diagnostics;
 using System.Reflection;
@@ -14,9 +15,12 @@ namespace ConvoyOptimizer
 
         // Variables
         Optimizer engine;
-      
+        PositionListener listener;
+        Graphics drawingboard;
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Set the title
             Text = "Convoy Optimizer";
 
             // Input labels
@@ -53,17 +57,27 @@ namespace ConvoyOptimizer
             label16.Text = "0";
             label17.Text = "0";
 
-
+            // Button labels
             button1.Text = "Calculate";
 
+            // Timer setup
             timer1.Interval = 100;
 
+            // Draw the base map
             DrawBase drawer = new DrawBase(pictureBox1.Width, pictureBox1.Height);
             drawer.DrawMap(pictureBox1);
+
+            // Create a new PositionListener
+            string ip = "172.22.0.192";
+            int port = 6944;
+            listener = new PositionListener(ip, port);
+
+            drawingboard = pictureBox1.CreateGraphics();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Get the input values
             int resourceInterval = int.Parse(textBox1.Text);
             int factory1ProcessTime = int.Parse(textBox2.Text);
             int factory2ProcessTime = int.Parse(textBox3.Text);
@@ -76,17 +90,25 @@ namespace ConvoyOptimizer
             int productTakeAwayTime = int.Parse(textBox9.Text);
             int numberOfCars = int.Parse(textBox11.Text);
 
+            // Set the progress bar maximum values
             progressBar1.Maximum = factory1ProcessTime * 1000;
             progressBar2.Maximum = factory2ProcessTime * 1000;
 
+            // Setting up the engine
             engine = new Optimizer(resourceInterval, resourceQueueLength, productTakeAwayTime, productQueueLength, factory1ProcessTime, factory2ProcessTime, factory1InputQueueLength, factory1OutputQueueLength, factory2InputQueueLength, factory2OutputQueueLength, numberOfCars);
             engine.Setup();
+
+            // Start the listener
+            listener.StartListening();
+            Task.Run(() => listener.ReceiveData());
+
+            // Start timer
             Debug.WriteLine("Starting timer");
             timer1.Start();
+
+            // Start the engine
             Debug.WriteLine("Starting engine");
             Task.Run(() => engine.Start());
-
-
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -96,15 +118,30 @@ namespace ConvoyOptimizer
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            // Update the progress bars
             progressBar1.Value = (int)( ((double)engine.Factories[0].currentPercent) / 100 * engine.Factory1ProcessTime * 1000);
             progressBar2.Value = (int)(((double)engine.Factories[1].currentPercent) / 100 * engine.Factory2ProcessTime * 1000);
 
+            // Update the capacity labels
             label12.Text = engine.ResourceQueue.Count.ToString();
             label13.Text = engine.Factories[0].InputQueue.Count.ToString();
             label14.Text = engine.Factories[0].OutputQueue.Count.ToString();
             label15.Text = engine.Factories[1].InputQueue.Count.ToString();
             label16.Text = engine.Factories[1].OutputQueue.Count.ToString();
             label17.Text = engine.ProductQueue.Count.ToString();
+
+            // Draw the cars
+            if (listener.outcoordinates != null)
+            {
+                drawingboard.Clear(Color.White);
+                foreach (KeyValuePair<string, List<double>> entry in listener.outcoordinates)
+                {
+                    List<double> coords = entry.Value;
+                    drawingboard.FillEllipse(Brushes.Black, (float)coords[0] - 5, (float)coords[1] - 5, 10, 10);
+                }
+                pictureBox1.Refresh();
+            }
+            
 
         }
     }
