@@ -5,15 +5,10 @@ import cv2
 import socket
 import json
 import numpy as np
-from collections import deque
-from scipy.fft import fft
-from picamera2 import Picamera2
 
 
 # Send data function
-def send_data(data, host, port):
-    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-        s.connect((host, port))
+def send_data(data, host, port, s):
         s.sendall(json.dumps(data).encode("utf-8"))
 
 # Aruco functions
