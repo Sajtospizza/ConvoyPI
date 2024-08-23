@@ -24,10 +24,9 @@ namespace OptimizerFrontend.DrawingLib
             g = Graphics.FromImage(bm);
             g.TranslateTransform(0, height);
             g.ScaleTransform(1, -1);
-
-
         }
 
+        // DO NOT TOUCH THIS FUNCTION OR I WILL KILL MYSELF
         public void DrawMap(PictureBox picturebox)
         {
 
@@ -43,28 +42,46 @@ namespace OptimizerFrontend.DrawingLib
             // Draw the map
             g.DrawArc(pen, width / 4 - height / 4, height / 2 - height / 4, height / 2,  height / 2, 90,180);
             g.DrawArc(pen, 3 * width / 4 - height / 4, height / 2 - height / 4, height / 2,  height / 2, 270,180);
-            g.DrawLine(pen, width/4 , height/2 - height/4, 3 * width / 4, height / 2 + height / 4);
-            g.DrawLine(pen, width/4 , height/2 + height/4, 3 * width / 4 , height / 2 - height / 4);
             g.DrawLine(pen, width / 4, height / 2 + height/4, 3 * width / 4 , height / 2 + height/4);
             g.DrawLine(pen, width / 4, height / 2 - height/4, 3 * width / 4 , height / 2 - height/4);
 
             // Draw the factories and their nodes
+            // Factory 1
             g.TranslateTransform(width / 4, height / 2);
             g.RotateTransform(-30);
             g.DrawRectangle(pen, -factorysize / 2, - factorysize , factorysize, 2 * factorysize);
-            g.FillEllipse(brush, - nodesize / 2, -height / 4 - nodesize / 2, nodesize, nodesize);
-            g.FillEllipse(brush, -nodesize / 2, height / 4 - nodesize, nodesize, nodesize);
+            // Curve and lines 
+            g.DrawArc(pen, -height / 4, -height / 4, height / 2, height / 2, 90, 240);
+            g.TranslateTransform(0, height / 4);
+            g.DrawLine(pen, (float)0.0, (float)0.0, (float)((width / 2) * Math.Sqrt(3) / 2), (float)0.0);
+            g.RotateTransform(30);
+            g.TranslateTransform(0, (float)(-height / 4 * Math.Sqrt(3)));
+            g.RotateTransform(30);
+            g.DrawLine(pen, (float)0.0, (float)0.0, (float)((width / 2) * Math.Sqrt(3) / 2), (float)0.0);
+            g.RotateTransform(-30);
+            g.TranslateTransform(0, (float)(height / 4 * Math.Sqrt(3) ));
+            g.RotateTransform(-30);
+            g.TranslateTransform(0, -height / 4);
+            // Nodes
+            g.FillEllipse(brush, -nodesize / 2, -height / 4 - nodesize / 2, nodesize, nodesize);
+            g.FillEllipse(brush, -nodesize / 2, height / 4 - nodesize / 2, nodesize, nodesize);
+            // Text
             g.ScaleTransform(1, -1);
             g.DrawString("2", font, brush2, -nodesize, -height / 4 - 2 * nodesize + nodesize);
             g.DrawString("1", font, brush2, -nodesize, height / 4 - 2 * nodesize - nodesize);
             g.DrawString("Factory 1", font2, brush2, -factorysize / 2, -factorysize - 20);
             g.ScaleTransform(1, -1);
             g.RotateTransform(30);
+            // Factory 2
             g.TranslateTransform(width / 2, 0);
             g.RotateTransform(-30);
             g.DrawRectangle(pen, -factorysize / 2, -factorysize, factorysize, 2 * factorysize);
-            g.FillEllipse(brush, -nodesize / 2, -height / 4, nodesize, nodesize);
+            // Curves
+            g.DrawArc(pen, -height / 4, -height / 4, height / 2, height / 2, -90, 240);
+            // Nodes
+            g.FillEllipse(brush, -nodesize / 2, -height / 4 - nodesize / 2, nodesize, nodesize);
             g.FillEllipse(brush, -nodesize / 2, height / 4 - nodesize / 2, nodesize, nodesize);
+            // Text
             g.ScaleTransform(1, -1);
             g.DrawString("4", font, brush2, -nodesize, -height / 4 - 2 * nodesize + 2 * nodesize);
             g.DrawString("3", font, brush2, -nodesize, height / 4 - 2 * nodesize - nodesize);
@@ -72,10 +89,7 @@ namespace OptimizerFrontend.DrawingLib
             g.ScaleTransform(1, -1);
             g.RotateTransform(30);
             g.TranslateTransform(-3 * width / 4, - height / 2);
-
-
             // Draw nodes
-            
             g.FillEllipse(brush, width / 4 - nodesize / 2, height / 2 - height / 4 - nodesize / 2, nodesize, nodesize);
             g.FillEllipse(brush, 3 * width / 4 - nodesize / 2, height / 2 + height / 4 - nodesize / 2, nodesize, nodesize);
             g.ScaleTransform(1, -1);
@@ -88,9 +102,5 @@ namespace OptimizerFrontend.DrawingLib
             picturebox.Image = bm;
             picturebox.BackColor = Color.White;
         }
-
-
-
-
     }
 }

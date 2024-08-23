@@ -56,6 +56,12 @@
             timer1 = new System.Windows.Forms.Timer(components);
             progressBar1 = new ProgressBar();
             progressBar2 = new ProgressBar();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            label16 = new Label();
+            label17 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -226,7 +232,7 @@
             // 
             // textBox9
             // 
-            textBox9.Location = new Point(216, 92);
+            textBox9.Location = new Point(216, 26);
             textBox9.Margin = new Padding(3, 2, 3, 2);
             textBox9.Name = "textBox9";
             textBox9.Size = new Size(62, 23);
@@ -234,7 +240,7 @@
             // 
             // textBox10
             // 
-            textBox10.Location = new Point(216, 26);
+            textBox10.Location = new Point(216, 92);
             textBox10.Margin = new Padding(3, 2, 3, 2);
             textBox10.Name = "textBox10";
             textBox10.Size = new Size(62, 23);
@@ -281,16 +287,76 @@
             // 
             // progressBar2
             // 
-            progressBar2.Location = new Point(941, 447);
+            progressBar2.Location = new Point(1028, 447);
             progressBar2.Name = "progressBar2";
             progressBar2.Size = new Size(131, 23);
             progressBar2.TabIndex = 25;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(572, 323);
+            label12.Name = "label12";
+            label12.Size = new Size(44, 15);
+            label12.TabIndex = 26;
+            label12.Text = "label12";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(598, 247);
+            label13.Name = "label13";
+            label13.Size = new Size(44, 15);
+            label13.TabIndex = 27;
+            label13.Text = "label13";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(649, 184);
+            label14.Name = "label14";
+            label14.Size = new Size(44, 15);
+            label14.TabIndex = 28;
+            label14.Text = "label14";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(999, 247);
+            label15.Name = "label15";
+            label15.Size = new Size(44, 15);
+            label15.TabIndex = 29;
+            label15.Text = "label15";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(1040, 184);
+            label16.Name = "label16";
+            label16.Size = new Size(44, 15);
+            label16.TabIndex = 30;
+            label16.Text = "label16";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(1028, 92);
+            label17.Name = "label17";
+            label17.Size = new Size(44, 15);
+            label17.TabIndex = 31;
+            label17.Text = "label17";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1241, 520);
+            Controls.Add(label17);
+            Controls.Add(label16);
+            Controls.Add(label15);
+            Controls.Add(label14);
+            Controls.Add(label13);
+            Controls.Add(label12);
             Controls.Add(progressBar2);
             Controls.Add(progressBar1);
             Controls.Add(pictureBox1);
@@ -355,5 +421,11 @@
         private System.Windows.Forms.Timer timer1;
         private ProgressBar progressBar1;
         private ProgressBar progressBar2;
+        private Label label12;
+        private Label label13;
+        private Label label14;
+        private Label label15;
+        private Label label16;
+        private Label label17;
     }
 }

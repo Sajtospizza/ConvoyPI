@@ -1,6 +1,7 @@
 using OptimizerFrontend.BackendLib;
 using OptimizerFrontend.DrawingLib;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace ConvoyOptimizer
 {
@@ -16,6 +17,9 @@ namespace ConvoyOptimizer
       
         private void Form1_Load(object sender, EventArgs e)
         {
+            Text = "Convoy Optimizer";
+
+            // Input labels
             label1.Text = "Resource interval in seconds";
             label2.Text = "Factory 1 process time in seconds";
             label3.Text = "Factory 2 process time in seconds";
@@ -40,6 +44,14 @@ namespace ConvoyOptimizer
             textBox9.Text = "5";
             textBox10.Text = "3";
             textBox11.Text = "3";
+
+            // Capacity labels
+            label12.Text = "0";
+            label13.Text = "0";
+            label14.Text = "0";
+            label15.Text = "0";
+            label16.Text = "0";
+            label17.Text = "0";
 
 
             button1.Text = "Calculate";
@@ -86,6 +98,13 @@ namespace ConvoyOptimizer
         {
             progressBar1.Value = (int)( ((double)engine.Factories[0].currentPercent) / 100 * engine.Factory1ProcessTime * 1000);
             progressBar2.Value = (int)(((double)engine.Factories[1].currentPercent) / 100 * engine.Factory2ProcessTime * 1000);
+
+            label12.Text = engine.ResourceQueue.Count.ToString();
+            label13.Text = engine.Factories[0].InputQueue.Count.ToString();
+            label14.Text = engine.Factories[0].OutputQueue.Count.ToString();
+            label15.Text = engine.Factories[1].InputQueue.Count.ToString();
+            label16.Text = engine.Factories[1].OutputQueue.Count.ToString();
+            label17.Text = engine.ProductQueue.Count.ToString();
 
         }
     }

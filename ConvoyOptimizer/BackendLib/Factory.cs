@@ -47,8 +47,6 @@ namespace OptimizerFrontend.BackendLib
             Debug.WriteLine("Factory {0} is processing resource {1}", Id, resource);
             System.Timers.Timer timer = new System.Timers.Timer(100);
             timer.Elapsed += (sender, e) => OnTimedEvent(sender, e, resource);
-            // Placeholder for processing logic
-            DrawProgressBar drawProgressBar = new DrawProgressBar(100, 100, ProcessTime);
             timer.Start();
             while (elapsedtime < ProcessTime * 1000)
             {

@@ -89,9 +89,10 @@ namespace OptimizerFrontend.BackendLib
                 // Check for idle cars to move resources and products
                 foreach (Car car in Cars.Where(c => c.State == Car.MovementState.Idle))
                 {
+                    Debug.WriteLine("Car {0} is in state: {1}",car.Id,car.State);
 
                     // Move final product to output
-                    if (Factories[1].OutputQueue.Count != 0)
+                    if (Factories[1].OutputQueue.Count != 0 && ProductQueue.Count < ProductQueueLength)
                     {
                         car.delivering = Factories[1].OutputQueue.Dequeue();
                         car.State = MovementState.Moving;
@@ -127,7 +128,7 @@ namespace OptimizerFrontend.BackendLib
                     foreach (Car car in Cars)
                     {
                         // Unload resource
-                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.HasArrivedAt(factory.StartPoint.Pos) )
+                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.HasArrivedAt(factory.StartPoint.Pos) && factory.InputQueue.Count < factory.InputQueueLength)
                         {
                             factory.InputQueue.Enqueue(car.delivering);
                             car.delivering = 0;
