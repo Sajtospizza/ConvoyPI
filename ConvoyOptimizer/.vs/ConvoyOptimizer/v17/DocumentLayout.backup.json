@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|c:\\my files\\convoypi\\convoyoptimizer\\backendlib\\factory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|solutionrelative:backendlib\\factory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|c:\\my files\\convoypi\\convoyoptimizer\\backendlib\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|solutionrelative:backendlib\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|c:\\my files\\convoypi\\convoyoptimizer\\backendlib\\point2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|solutionrelative:backendlib\\point2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|c:\\my files\\convoypi\\convoyoptimizer\\backendlib\\factory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|solutionrelative:backendlib\\factory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|c:\\my files\\convoypi\\convoyoptimizer\\commslib\\positionlistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|c:\\my files\\convoypi\\convoyoptimizer\\drawinglib\\drawbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|solutionrelative:drawinglib\\drawbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|c:\\my files\\convoypi\\convoyoptimizer\\backendlib\\point2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|solutionrelative:backendlib\\point2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{27C140FB-5E4F-44D9-8D44-E882B76A1A4A}|OptimizerFrontend.csproj|c:\\my files\\convoypi\\convoyoptimizer\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -83,20 +83,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Point2D.cs",
               "DocumentMoniker": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\BackendLib\\Point2D.cs",
               "RelativeDocumentMoniker": "BackendLib\\Point2D.cs",
               "ToolTip": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\BackendLib\\Point2D.cs",
               "RelativeToolTip": "BackendLib\\Point2D.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-27T12:51:05.649Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "DrawBase.cs",
               "DocumentMoniker": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\DrawingLib\\DrawBase.cs",
               "RelativeDocumentMoniker": "DrawingLib\\DrawBase.cs",
@@ -109,7 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Optimizer.cs",
               "DocumentMoniker": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\BackendLib\\Optimizer.cs",
               "RelativeDocumentMoniker": "BackendLib\\Optimizer.cs",
@@ -122,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MyTimer.cs",
               "DocumentMoniker": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\BackendLib\\MyTimer.cs",
               "RelativeDocumentMoniker": "BackendLib\\MyTimer.cs",
@@ -135,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PositionListener.cs",
               "DocumentMoniker": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\CommsLib\\PositionListener.cs",
               "RelativeDocumentMoniker": "CommsLib\\PositionListener.cs",
@@ -148,26 +148,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Car.cs",
               "DocumentMoniker": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\BackendLib\\Car.cs",
               "RelativeDocumentMoniker": "BackendLib\\Car.cs",
               "ToolTip": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\BackendLib\\Car.cs",
               "RelativeToolTip": "BackendLib\\Car.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswC4AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-27T10:10:55.323Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Factory.cs",
               "DocumentMoniker": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\BackendLib\\Factory.cs",
               "RelativeDocumentMoniker": "BackendLib\\Factory.cs",
               "ToolTip": "C:\\My Files\\ConvoyPI\\ConvoyOptimizer\\BackendLib\\Factory.cs",
               "RelativeToolTip": "BackendLib\\Factory.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAgwBcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAAAcwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-27T10:10:55.325Z",
               "EditorCaption": ""
