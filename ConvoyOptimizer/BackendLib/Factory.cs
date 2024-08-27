@@ -13,8 +13,8 @@ namespace OptimizerFrontend.BackendLib
     {
         public int Id { get; set; }
 
-        public PositionNode StartPoint { get; set; }
-        public PositionNode EndPoint { get; set; }
+        public Point2D StartPoint { get; set; }
+        public Point2D EndPoint { get; set; }
 
         public int ProcessTime { get; set; } // in seconds
         public bool IsWorking { get; set; }
@@ -28,7 +28,7 @@ namespace OptimizerFrontend.BackendLib
         int elapsedtime;
         public int currentPercent = 0;
 
-        public Factory(int id, PositionNode input, PositionNode output, int processTime, bool isWorking, int InputQueueLength, int OutputQueueLength)
+        public Factory(int id, Point2D input, Point2D output, int processTime, bool isWorking, int InputQueueLength, int OutputQueueLength)
         {
             Id = id;
             StartPoint = input;

@@ -17,6 +17,8 @@ namespace ConvoyOptimizer
         Optimizer engine;
         PositionListener listener;
         Graphics drawingboard;
+        Bitmap basemap;
+        Bitmap bm;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -65,14 +67,15 @@ namespace ConvoyOptimizer
 
             // Draw the base map
             DrawBase drawer = new DrawBase(pictureBox1.Width, pictureBox1.Height);
-            drawer.DrawMap(pictureBox1);
+            basemap = drawer.DrawMap(pictureBox1);
+            pictureBox1.Image = basemap;
 
             // Create a new PositionListener
-            string ip = "172.22.0.192";
+            string ip = "172.22.0.6";
             int port = 6944;
             listener = new PositionListener(ip, port);
 
-            drawingboard = pictureBox1.CreateGraphics();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -96,11 +99,14 @@ namespace ConvoyOptimizer
 
             // Setting up the engine
             engine = new Optimizer(resourceInterval, resourceQueueLength, productTakeAwayTime, productQueueLength, factory1ProcessTime, factory2ProcessTime, factory1InputQueueLength, factory1OutputQueueLength, factory2InputQueueLength, factory2OutputQueueLength, numberOfCars);
+            // Cheap ass solution, please make this look better
+            engine.width = pictureBox1.Width;
+            engine.height = pictureBox1.Height;
             engine.Setup();
 
             // Start the listener
-            listener.StartListening();
-            Task.Run(() => listener.ReceiveData());
+            //listener.StartListening();
+            //Task.Run(() => listener.ReceiveData());
 
             // Start timer
             Debug.WriteLine("Starting timer");
@@ -111,10 +117,6 @@ namespace ConvoyOptimizer
             Task.Run(() => engine.Start());
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -133,13 +135,15 @@ namespace ConvoyOptimizer
             // Draw the cars
             if (listener.outcoordinates != null)
             {
-                drawingboard.Clear(Color.White);
+                Bitmap currentmap = (Bitmap)basemap.Clone();
+                Graphics currentmapg = Graphics.FromImage(currentmap);
                 foreach (KeyValuePair<string, List<double>> entry in listener.outcoordinates)
                 {
                     List<double> coords = entry.Value;
-                    drawingboard.FillEllipse(Brushes.Black, (float)coords[0] - 5, (float)coords[1] - 5, 10, 10);
+                    Debug.WriteLine(currentmap.Width + " " + currentmap.Height);
+                    currentmapg.FillEllipse(Brushes.Black, (float)coords[0] - 5 + currentmap.Width / 4, (float)coords[1] - 5 + currentmap.Height / 4, 10 , 10);
                 }
-                pictureBox1.Refresh();
+                pictureBox1.Image = currentmap;
             }
             
 

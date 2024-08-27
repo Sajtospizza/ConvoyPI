@@ -12,7 +12,7 @@ namespace OptimizerFrontend.BackendLib
 {
     internal class Optimizer(int resourceInterval, int resourceQueueLength,int takeAwayTime, int productQueueLength,int factory1ProcessTime, int factory2ProcessTime, int fact1in, int fact1out, int fact2in, int fact2out, int numberofcars)
     {
-        // Base values
+        // Base values for the simulation
         public int ResourceInterval { get; set; } = resourceInterval;
         public int ResourceQueueLength { get; set; } = resourceQueueLength;
         public int TakeAwayTime { get; set; } = takeAwayTime;
@@ -28,34 +28,50 @@ namespace OptimizerFrontend.BackendLib
         // Lists and queues
         public List<Factory> Factories { get; set; }
         public List<Car> Cars { get; set; }
-        public List<PositionNode> PositionNodes { get; set; }
         public Queue<int> ResourceQueue { get; set; }
         public Queue<int> ProductQueue { get; set; }
+        public Dictionary<string, Point2D> PositionNodes { get; set; }
 
         // Dynamic values
         public int resourceIndex = 0;
         public int factory1Percent = 0;
 
+        // Map information
+        public int width { get; set; }
+        public int height { get; set; }
+
         // Setup function
         public void Setup()
         {
-            PositionNodes = new List<PositionNode>();
-            foreach (PositionNode.NodeName name in Enum.GetValues(typeof(PositionNode.NodeName)))
+            // Setting up the nodes
+            PositionNodes = new Dictionary<string, Point2D>
             {
-                PositionNode node = new PositionNode(name, new Point2D((int)name,(int)name), false);
-                PositionNodes.Add(node);
-            }
+                {"SpawnPoint", new Point2D(width / 4, 3 *  height / 4)},
+                {"FirstInput", new Point2D((int)(width / 4 - Math.Sin(Math.PI / 6) * height / 4), (int)((3 * height / 4) - height / 4 * Math.Cos(Math.PI / 6)))},
+                {"FirstOutput", new Point2D((int)(width / 4 + Math.Sin(Math.PI / 6) * height / 4), (int)((height / 4) + height / 4 * Math.Cos(Math.PI / 6)))},
+                {"SecondInput", new Point2D((int)((3*width / 4) - Math.Sin(Math.PI / 6) * height / 4), (int)((3 * height / 4) - height / 4 * Math.Cos(Math.PI / 6)))},
+                {"SecondOutput", new Point2D((int)((3*width / 4) + Math.Sin(Math.PI / 6) * height / 4), (int)((height / 4) + height / 4 * Math.Cos(Math.PI / 6)))},
+                {"EndPoint", new Point2D(3 * width / 4, height / 4)},
+                {"Park1", new Point2D(width / 2, 3 * height / 4)},
+                {"Park2", new Point2D(width / 2, height / 4 )}
+            };
+
+            // Debug print:
+            //foreach (KeyValuePair<string, Point2D> kvp in PositionNodes)
+            //{
+            //    Debug.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+            //}
 
             Factories = new List<Factory>
             {
-                new Factory(1, PositionNodes[(int)PositionNode.NodeName.FirstInput], PositionNodes[(int)PositionNode.NodeName.FirstOutput], Factory1ProcessTime, false, Factory1InputQueueLength, Factory1OutputQueueLength),
-                new Factory(2, PositionNodes[(int)PositionNode.NodeName.SecondInput], PositionNodes[(int)PositionNode.NodeName.SecondOutput], Factory2ProcessTime, false, Factory2InputQueueLength, Factory2OutputQueueLength),
+                new Factory(1, PositionNodes["FirstInput"], PositionNodes["FirstOutput"], Factory1ProcessTime, false, Factory1InputQueueLength, Factory1OutputQueueLength),
+                new Factory(2, PositionNodes["SecondInput"], PositionNodes["SecondOutput"], Factory2ProcessTime, false, Factory2InputQueueLength, Factory2OutputQueueLength),
             };
 
             Cars = new List<Car>(numberOfCars);
             for (int i = 0; i < numberOfCars; i++)
             {
-                Cars.Add(new Car(i+1, MovementState.Idle, PositionNodes[(int)PositionNode.NodeName.SpawnPoint].Pos, 0));
+                Cars.Add(new Car(i+1, MovementState.Idle, PositionNodes["SpawnPoint"], 0));
             }
 
             ResourceQueue = new Queue<int>(ResourceQueueLength);
@@ -89,14 +105,13 @@ namespace OptimizerFrontend.BackendLib
                 // Check for idle cars to move resources and products
                 foreach (Car car in Cars.Where(c => c.State == Car.MovementState.Idle))
                 {
-                    Debug.WriteLine("Car {0} is in state: {1}",car.Id,car.State);
 
                     // Move final product to output
                     if (Factories[1].OutputQueue.Count != 0 && ProductQueue.Count < ProductQueueLength)
                     {
                         car.delivering = Factories[1].OutputQueue.Dequeue();
                         car.State = MovementState.Moving;
-                        Task.Run(() => car.StartMoving(PositionNodes[(int)PositionNode.NodeName.EndPoint].Pos));
+                        Task.Run(() => car.StartMoving(PositionNodes["EndPoint"]));
                         continue;
                     }
 
@@ -106,7 +121,7 @@ namespace OptimizerFrontend.BackendLib
                     {
                         car.delivering = Factories[0].OutputQueue.Dequeue();
                         car.State = MovementState.Moving;
-                        Task.Run(() => car.StartMoving(PositionNodes[(int)PositionNode.NodeName.SecondInput].Pos));
+                        Task.Run(() => car.StartMoving(PositionNodes["SecondInput"]));
                         continue;
                     }
 
@@ -115,7 +130,7 @@ namespace OptimizerFrontend.BackendLib
                     {  
                         car.delivering = ResourceQueue.Dequeue();
                         car.State = MovementState.Moving;
-                        Task.Run(() => car.StartMoving(PositionNodes[(int)PositionNode.NodeName.FirstInput].Pos));
+                        Task.Run(() => car.StartMoving(PositionNodes["FirstInput"]));
                         continue;
                     }
                     
@@ -128,7 +143,7 @@ namespace OptimizerFrontend.BackendLib
                     foreach (Car car in Cars)
                     {
                         // Unload resource
-                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.HasArrivedAt(factory.StartPoint.Pos) && factory.InputQueue.Count < factory.InputQueueLength)
+                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.HasArrivedAt(factory.StartPoint) && factory.InputQueue.Count < factory.InputQueueLength)
                         {
                             factory.InputQueue.Enqueue(car.delivering);
                             car.delivering = 0;
@@ -136,7 +151,7 @@ namespace OptimizerFrontend.BackendLib
                         }
 
                         // Unload final product
-                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.HasArrivedAt(PositionNodes[(int)PositionNode.NodeName.EndPoint].Pos) && ProductQueue.Count < ProductQueueLength)
+                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.HasArrivedAt(PositionNodes["EndPoint"]) && ProductQueue.Count < ProductQueueLength)
                         {
                             ProductQueue.Enqueue(car.delivering);
                             car.delivering = 0;

@@ -27,7 +27,7 @@ namespace OptimizerFrontend.DrawingLib
         }
 
         // DO NOT TOUCH THIS FUNCTION OR I WILL KILL MYSELF
-        public void DrawMap(PictureBox picturebox)
+        public Bitmap DrawMap(PictureBox picturebox)
         {
 
             // Init drawing tools
@@ -99,8 +99,8 @@ namespace OptimizerFrontend.DrawingLib
 
 
             // Assign the bitmap to the PictureBox
-            picturebox.Image = bm;
             picturebox.BackColor = Color.White;
+            return bm;
         }
     }
 }

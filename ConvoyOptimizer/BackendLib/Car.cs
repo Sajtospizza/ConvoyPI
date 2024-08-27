@@ -43,7 +43,8 @@ namespace OptimizerFrontend.BackendLib
 
         public bool HasArrivedAt(Point2D pos)
         {
-            return pos == Pos;
+            // Check if the car is in a given area of position
+            return Pos.DistanceTo(pos) < 10;
         }
 
 

@@ -32,3 +32,21 @@ D:\ConvoyPI\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.pdb
 D:\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.genruntimeconfig.cache
 D:\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\ref\OptimizerFrontend.dll
 D:\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.Properties.Resources.resources
+C:\My Files\ConvoyPI\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.exe
+C:\My Files\ConvoyPI\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.deps.json
+C:\My Files\ConvoyPI\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.runtimeconfig.json
+C:\My Files\ConvoyPI\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.dll
+C:\My Files\ConvoyPI\ConvoyOptimizer\bin\Debug\net8.0-windows\OptimizerFrontend.pdb
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\ConvoyOptimizer.Form1.resources
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.Properties.Resources.resources
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.csproj.GenerateResource.cache
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.GeneratedMSBuildEditorConfig.editorconfig
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.AssemblyInfoInputs.cache
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.AssemblyInfo.cs
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.csproj.CoreCompileInputs.cache
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.sourcelink.json
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.dll
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\refint\OptimizerFrontend.dll
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.pdb
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\OptimizerFrontend.genruntimeconfig.cache
+C:\My Files\ConvoyPI\ConvoyOptimizer\obj\Debug\net8.0-windows\ref\OptimizerFrontend.dll

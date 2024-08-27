@@ -271,8 +271,7 @@
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(800, 400);
             pictureBox1.TabIndex = 23;
-            pictureBox1.TabStop = false;
-            pictureBox1.Paint += pictureBox1_Paint;
+            pictureBox1.TabStop = false;   
             // 
             // timer1
             // 

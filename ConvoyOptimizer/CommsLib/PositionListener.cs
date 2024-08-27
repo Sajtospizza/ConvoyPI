@@ -16,6 +16,7 @@ namespace OptimizerFrontend.CommsLib
         public string Ip;
         public int Port;
         public Dictionary<string, List<double>> outcoordinates;
+        public Dictionary<string, List<double>> coordinates;
 
         // TcpListener to listen for incoming connections
         TcpListener server;
@@ -26,6 +27,7 @@ namespace OptimizerFrontend.CommsLib
         {
             this.Ip = ip;
             this.Port = port;
+            coordinates = new Dictionary<string, List<double>>();
         }
 
         public void StartListening()
@@ -61,10 +63,21 @@ namespace OptimizerFrontend.CommsLib
                     jsonString = jsonString.Substring(0, jsonString.IndexOf('}') + 1);
                 }
 
-                coordinates = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(jsonString);
 
-                // Uncomment for debugging
-                //Debug.WriteLine($"Key: {coordinates.Keys.First()}, Value: [{string.Join(", ", coordinates.Values.First())}]");
+                try
+                {
+                    coordinates = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(jsonString);
+                    Debug.WriteLine(coordinates);
+                }
+                
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+          
+                    continue;
+                }
+               
+
 
                 outcoordinates = coordinates;
             }

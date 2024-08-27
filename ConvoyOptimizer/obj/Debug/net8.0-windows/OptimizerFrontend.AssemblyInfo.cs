@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OptimizerFrontend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6e9354d6f9536e3a587161522be3844d58b7409")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e2551fb1b0295aa55295a2cae883b228bdb85e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("OptimizerFrontend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OptimizerFrontend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
