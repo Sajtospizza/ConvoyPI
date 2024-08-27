@@ -43,7 +43,7 @@ def get_border_coordiantes(picamera2,arucoDict,arucoParams):
 
 # Get positions
 
-def get_positions(corners, ids):
+def get_positions(corners, ids, bordercoords):
     led_positions = {}
     for (marker_corner, marker_id) in zip(corners, ids):
         
@@ -60,15 +60,17 @@ def get_positions(corners, ids):
         # Calculate and draw the center of the ArUco marker
         center_x = int((top_left[0] + bottom_right[0]) / 2.0)
         center_y = int((top_left[1] + bottom_right[1]) / 2.0)
-
-        pos = transform_point((center_x, center_y),(1000, 500))
+        print("Original: ", center_x, " ", center_y)
+        pos = transform_point((center_x, center_y),(400, 200),bordercoords)
+        print("Transformed: ", pos)
             
         # Update the positions in the dictionary
         led_positions[int(marker_id[0])] = pos
+
     return led_positions 
 
 
-def transform_point(orig_point, top_right):
+def transform_point(orig_point, top_right, bordercoords):
 
     orig_x, orig_y = orig_point
     bl_x, bl_y = (0,0)
@@ -79,8 +81,8 @@ def transform_point(orig_point, top_right):
     height_orig = tr_y - bl_y
     
     # Calculate the scale factors for x and y
-    scale_x = tr_x/ width_orig
-    scale_y = tr_y / height_orig
+    scale_x = width_orig / (bordercoords[1][0]-bordercoords[0][0])
+    scale_y = height_orig / (bordercoords[0][1] - bordercoords[1][1])
     
     # Transform the original point to the new coordinate system
     new_x = (orig_x - bl_x) * scale_x
