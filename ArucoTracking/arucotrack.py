@@ -17,7 +17,7 @@ arucoDict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_50)
 arucoParams = cv2.aruco.DetectorParameters_create()
 
 # Init server adress
-server_address = "172.22.0.6"
+server_address = "172.22.0.24"
 server_port = 6944
 
 print("Setting up connection")
@@ -45,6 +45,28 @@ print(border_coords)
 # Calculate the border coordinates for roi
 top_left_border = (border_coords[0][0], border_coords[1][1])
 bottom_right_border = (border_coords[1][0], border_coords[0][1])
+
+# Detect cars and send them for identification
+print("Detecting cars...")
+cars = {}
+for i in range(0, 10):
+    frame = picamera2.capture_array()
+    roi = frame[top_left_border[1]:bottom_right_border[1], top_left_border[0]:bottom_right_border[0]]
+
+    (corners, ids, rejected) = cv2.aruco.detectMarkers(roi, arucoDict, parameters=arucoParams)
+
+    if len(corners) != 0:
+        # Get positions
+        tempcars = get_positions(corners, ids, border_coords)
+    for (key, value) in tempcars.items():
+        if not cars.__contains__(key):
+            cars[key] = value
+    time.sleep(0.1)
+print("Cars detected:")
+print(cars)
+
+# Send cars for identification
+client_socket.sendall(json.dumps(cars).encode("utf-8"))
 
 # Running tracking
 print("Running tracking, press q to stop...")

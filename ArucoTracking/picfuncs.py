@@ -6,7 +6,6 @@ import socket
 import json
 import numpy as np
 
-
 # Send data function
 def send_data(data, host, port, s):
         s.sendall(json.dumps(data).encode("utf-8"))
@@ -60,9 +59,9 @@ def get_positions(corners, ids, bordercoords):
         # Calculate and draw the center of the ArUco marker
         center_x = int((top_left[0] + bottom_right[0]) / 2.0)
         center_y = int((top_left[1] + bottom_right[1]) / 2.0)
-        print("Original: ", center_x, " ", center_y)
-        pos = transform_point((center_x, center_y),(400, 200),bordercoords)
-        print("Transformed: ", pos)
+        #print("Original: ", center_x, " ", center_y)
+        pos = transform_point((center_x, center_y),(600, 200),bordercoords)
+        #print("Transformed: ", pos)
             
         # Update the positions in the dictionary
         led_positions[int(marker_id[0])] = pos
