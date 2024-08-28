@@ -271,7 +271,7 @@
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(800, 400);
             pictureBox1.TabIndex = 23;
-            pictureBox1.TabStop = false;   
+            pictureBox1.TabStop = false;
             // 
             // timer1
             // 
@@ -294,7 +294,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(572, 323);
+            label12.Location = new Point(608, 331);
             label12.Name = "label12";
             label12.Size = new Size(44, 15);
             label12.TabIndex = 26;

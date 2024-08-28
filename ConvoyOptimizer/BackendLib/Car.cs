@@ -12,7 +12,6 @@ namespace OptimizerFrontend.BackendLib
         public int Id { get; set; }
         public MovementState State { get; set; }
         public Point2D Pos { get; set; }
-
         public int delivering { get; set; }
 
         public enum MovementState
@@ -32,19 +31,23 @@ namespace OptimizerFrontend.BackendLib
 
         public void StartMoving(Point2D newPos)
         {
-            Debug.WriteLine($"Car {Id} is moving");
-            // Placeholder for moving logic
-            Thread.Sleep(3000);
+            Debug.WriteLine($"Car {Id} is moving to {newPos}");
+            
             // TODO: Implement moving logic
-            Pos = newPos;
-            Debug.WriteLine($"Car {Id} has arrived");
-            State = MovementState.Waiting;
+            while (true) {
+                if (HasArrivedAt(newPos)) {
+                    Debug.WriteLine($"Car {Id} has arrived");
+                    Pos = newPos;
+                    State = MovementState.Waiting;
+                    return;
+                }
+            }
         }
 
         public bool HasArrivedAt(Point2D pos)
         {
             // Check if the car is in a given area of position
-            return Pos.DistanceTo(pos) < 10;
+            return Pos.DistanceTo(pos) < 25;
         }
 
 

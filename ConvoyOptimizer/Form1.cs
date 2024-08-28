@@ -71,7 +71,7 @@ namespace ConvoyOptimizer
             pictureBox1.Image = basemap;
 
             // Create a new PositionListener
-            string ip = "172.22.0.6";
+            string ip = "172.22.0.24";
             int port = 6944;
             listener = new PositionListener(ip, port);
 
@@ -97,16 +97,22 @@ namespace ConvoyOptimizer
             progressBar1.Maximum = factory1ProcessTime * 1000;
             progressBar2.Maximum = factory2ProcessTime * 1000;
 
+            // Start the listener and receive the car positions
+            listener.StartListening();
+            Debug.WriteLine("Listening for cars");
+            Dictionary<string, List<double>> cars = listener.ReceiveCars();
+            Debug.WriteLine("Cars received");
+            Debug.WriteLine(cars);
+
             // Setting up the engine
-            engine = new Optimizer(resourceInterval, resourceQueueLength, productTakeAwayTime, productQueueLength, factory1ProcessTime, factory2ProcessTime, factory1InputQueueLength, factory1OutputQueueLength, factory2InputQueueLength, factory2OutputQueueLength, numberOfCars);
+            engine = new Optimizer(resourceInterval, resourceQueueLength, productTakeAwayTime, productQueueLength, factory1ProcessTime, factory2ProcessTime, factory1InputQueueLength, factory1OutputQueueLength, factory2InputQueueLength, factory2OutputQueueLength, numberOfCars, cars);
             // Cheap ass solution, please make this look better
             engine.width = pictureBox1.Width;
             engine.height = pictureBox1.Height;
             engine.Setup();
 
-            // Start the listener
-            //listener.StartListening();
-            //Task.Run(() => listener.ReceiveData());
+            // Start reading the data
+            Task.Run(() => listener.ReceiveData());
 
             // Start timer
             Debug.WriteLine("Starting timer");
@@ -132,16 +138,26 @@ namespace ConvoyOptimizer
             label16.Text = engine.Factories[1].OutputQueue.Count.ToString();
             label17.Text = engine.ProductQueue.Count.ToString();
 
-            // Draw the cars
+            // Draw the and update positions
             if (listener.outcoordinates != null)
             {
                 Bitmap currentmap = (Bitmap)basemap.Clone();
                 Graphics currentmapg = Graphics.FromImage(currentmap);
+                Brush brush;
                 foreach (KeyValuePair<string, List<double>> entry in listener.outcoordinates)
                 {
-                    List<double> coords = entry.Value;
-                    Debug.WriteLine(currentmap.Width + " " + currentmap.Height);
-                    currentmapg.FillEllipse(Brushes.Black, (float)coords[0] - 5 + currentmap.Width / 4, (float)coords[1] - 5 + currentmap.Height / 4, 10 , 10);
+                    foreach (Car car in engine.Cars)
+                    {
+                        if (car.Id == int.Parse(entry.Key))
+                        {
+                            car.Pos = new Point2D((int)entry.Value[0], (int)entry.Value[1]);
+                            //Debug.WriteLine(car.Pos);
+                            
+                            if (car.delivering != 0) brush = Brushes.Red;
+                            else brush = Brushes.Black;
+                            currentmapg.FillEllipse(brush, (float)car.Pos.X - 5 + currentmap.Width / 4 - currentmap.Height / 4, (float)car.Pos.Y - 5 + currentmap.Height / 4, 10, 10);
+                        }
+                    }
                 }
                 pictureBox1.Image = currentmap;
             }

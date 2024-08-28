@@ -17,6 +17,7 @@ namespace OptimizerFrontend.CommsLib
         public int Port;
         public Dictionary<string, List<double>> outcoordinates;
         public Dictionary<string, List<double>> coordinates;
+        
 
         // TcpListener to listen for incoming connections
         TcpListener server;
@@ -42,6 +43,7 @@ namespace OptimizerFrontend.CommsLib
             Debug.WriteLine("Client connected");
         }
 
+        // Function to receive positions
         public void ReceiveData()
         {
             // Get a stream object for reading
@@ -63,16 +65,16 @@ namespace OptimizerFrontend.CommsLib
                     jsonString = jsonString.Substring(0, jsonString.IndexOf('}') + 1);
                 }
 
-
+                // Fuck this
                 try
                 {
                     coordinates = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(jsonString);
-                    Debug.WriteLine(coordinates);
+                    //Debug.WriteLine(coordinates);
                 }
                 
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e);
+                    //Debug.WriteLine(e);
           
                     continue;
                 }
@@ -81,6 +83,22 @@ namespace OptimizerFrontend.CommsLib
 
                 outcoordinates = coordinates;
             }
+        }
+
+        // Function to get the cars information
+        public Dictionary<string, List<double>> ReceiveCars()
+        {
+            NetworkStream stream = client.GetStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            Dictionary<string, List<double>> coordinates;
+
+            bytesRead = stream.Read(buffer, 0, buffer.Length);
+            string jsonString = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+            coordinates = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(jsonString);
+            
+            return coordinates;
         }
     }
 }
