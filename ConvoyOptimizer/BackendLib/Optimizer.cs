@@ -113,42 +113,35 @@ namespace OptimizerFrontend.BackendLib
                 // Check for idle cars to move resources and products
                 foreach (Car car in Cars.Where(c => c.State == Car.MovementState.Idle))
                 {
-
-                    // Move final product to output
-                    if (Factories[1].OutputQueue.Count != 0 && ProductQueue.Count < ProductQueueLength && car.Pos == Factories[1].EndPoint)
+                    // Move to second output
+                    if (car.delivering == 0 && Factories[1].OutputQueue.Count != 0 && ProductQueue.Count < ProductQueueLength)
                     {
-                        car.delivering = Factories[1].OutputQueue.Dequeue();
                         car.State = MovementState.Moving;
-                        Task.Run(() => car.StartMoving(PositionNodes["EndPoint"]));
-                        continue;
+                        Task.Run(() => car.StartMoving(PositionNodes["SecondOutput"]));
                     }
 
-
-                    // Move half-product to second factory
-                    if (Factories[0].OutputQueue.Count != 0 && Factories[1].InputQueue.Count < Factories[1].InputQueueLength && car.Pos == Factories[0].EndPoint)
+                    // Move to first output
+                    if (car.delivering == 0 && Factories[0].OutputQueue.Count != 0 && Factories[1].InputQueue.Count < Factories[1].InputQueueLength)
                     {
-                        car.delivering = Factories[0].OutputQueue.Dequeue();
                         car.State = MovementState.Moving;
-                        Task.Run(() => car.StartMoving(PositionNodes["SecondInput"]));
+                        Task.Run(() => car.StartMoving(PositionNodes["FirstOutput"]));
                         continue;
                     }
-
 
                     // Move to spawn point
-                    if (ResourceQueue.Count != 0 && Factories[0].InputQueue.Count < Factories[0].InputQueueLength)
+                    if (car.delivering == 0 && ResourceQueue.Count != 0 && Factories[0].InputQueue.Count < Factories[0].InputQueueLength)
                     {
                         car.State = MovementState.Moving;
-                        Task.Run(() => car.StartMoving(PositionNodes["SpawnPoint"])); // Move to spawn point (if not already there)
+                        Task.Run(() => car.StartMoving(PositionNodes["SpawnPoint"]));
                         continue;
                     }
-
                 }
 
                 // Loop through waiting cars
                 foreach (Car car in Cars.Where(c => c.State == Car.MovementState.Waiting))
                 {
                     // Load and move to first factory
-                    if (car.delivering == 0 && car.Pos == PositionNodes["SpawnPoint"])
+                    if (car.delivering == 0 && car.HasArrivedAt(PositionNodes["SpawnPoint"]) && ResourceQueue.Count != 0)
                     {
                         car.delivering = ResourceQueue.Dequeue();
                         car.State = MovementState.Moving;
@@ -156,7 +149,25 @@ namespace OptimizerFrontend.BackendLib
                         continue;
                     }
 
+                    // Load and move to second factory
+                    if (car.delivering == 0 && car.HasArrivedAt(PositionNodes["FirstOutput"]) && Factories[0].OutputQueue.Count != 0)
+                    {
+                        car.delivering = Factories[0].OutputQueue.Dequeue();
+                        car.State = MovementState.Moving;
+                        Task.Run(() => car.StartMoving(PositionNodes["SecondInput"]));
+                        continue;
+                    }
+
+                    // Load and move to product deposit
+                    if (car.delivering == 0 && car.HasArrivedAt(PositionNodes["SecondOutput"]) && Factories[1].OutputQueue.Count != 0)
+                    { 
+                        car.delivering = Factories[1].OutputQueue.Dequeue();
+                        car.State = MovementState.Moving;
+                        Task.Run(() => car.StartMoving(PositionNodes["EndPoint"]));
+                        continue;
+                    }
                 }
+                
 
                 // Look at factories, unload resource if arrived and process
                 foreach (Factory factory in Factories)
@@ -165,7 +176,7 @@ namespace OptimizerFrontend.BackendLib
                     foreach (Car car in Cars)
                     {
                         // Unload resource
-                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.Pos == factory.StartPoint && factory.InputQueue.Count < factory.InputQueueLength)
+                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.HasArrivedAt(factory.StartPoint) && factory.InputQueue.Count < factory.InputQueueLength)
                         {
                             factory.InputQueue.Enqueue(car.delivering);
                             car.delivering = 0;
@@ -173,15 +184,14 @@ namespace OptimizerFrontend.BackendLib
                         }
 
                         // Unload final product
-                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.Pos == factory.EndPoint && ProductQueue.Count < ProductQueueLength)
+                        if (car.delivering != 0 && car.State == Car.MovementState.Waiting && car.HasArrivedAt(factory.EndPoint) && ProductQueue.Count < ProductQueueLength)
                         {
                             ProductQueue.Enqueue(car.delivering);
                             car.delivering = 0;
                             car.State = Car.MovementState.Idle;
                             Debug.WriteLine("Product added to queue, amount now: {0}", ProductQueue.Count);  
                         }
-
-                        
+                         
                     }
 
                     // Process

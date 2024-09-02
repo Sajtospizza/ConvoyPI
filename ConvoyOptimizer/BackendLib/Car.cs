@@ -16,9 +16,9 @@ namespace OptimizerFrontend.BackendLib
 
         public enum MovementState
         {
-            Moving = 1,
-            Waiting = 2,
-            Idle = 3
+            Moving,
+            Waiting,
+            Idle
         }
 
         public Car(int id, MovementState state, Point2D point, int Delivering)
@@ -37,7 +37,6 @@ namespace OptimizerFrontend.BackendLib
             while (true) {
                 if (HasArrivedAt(newPos)) {
                     Debug.WriteLine($"Car {Id} has arrived");
-                    Pos = newPos;
                     State = MovementState.Waiting;
                     return;
                 }

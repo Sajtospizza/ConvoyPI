@@ -71,7 +71,7 @@ namespace ConvoyOptimizer
             pictureBox1.Image = basemap;
 
             // Create a new PositionListener
-            string ip = "172.22.0.24";
+            string ip = "172.22.0.86";
             int port = 6944;
             listener = new PositionListener(ip, port);
 

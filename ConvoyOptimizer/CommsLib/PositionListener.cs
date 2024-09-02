@@ -59,29 +59,25 @@ namespace OptimizerFrontend.CommsLib
                 // Read the data sent by the client
                 bytesRead = stream.Read(buffer, 0, buffer.Length);
                 string jsonString = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                int count = jsonString.Count(c => c == '}');
-                if (count > 1)
-                {
-                    jsonString = jsonString.Substring(0, jsonString.IndexOf('}') + 1);
-                }
+
+                string[] splitArray = jsonString.Split(new[] { "}{", }, StringSplitOptions.None);
+
+                // Add the missing braces back to each element
+                splitArray = splitArray.Select(s => "{" + s.TrimStart('{').TrimEnd('}') + "}").ToArray();
 
                 // Fuck this
-                try
+                foreach (string coord in splitArray)
                 {
-                    coordinates = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(jsonString);
-                    //Debug.WriteLine(coordinates);
-                }
-                
-                catch (Exception e)
-                {
-                    //Debug.WriteLine(e);
-          
-                    continue;
-                }
-               
-
-
-                outcoordinates = coordinates;
+                    Debug.WriteLine(coord);
+                    try
+                    {
+                        outcoordinates = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(coord);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e);
+                    }
+                }     
             }
         }
 
