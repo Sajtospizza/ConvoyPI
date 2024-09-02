@@ -1,6 +1,6 @@
 import cv2
 from picamera2 import Picamera2
-from picfuncs import send_data, get_border_coordiantes, get_positions
+from picfuncs import get_border_coordiantes, get_positions
 import time
 import socket
 import json
@@ -8,6 +8,7 @@ import json
 # Initialize the camera
 print("Starting camera...")
 picamera2 = Picamera2()
+print(picamera2.sensor_modes)
 picamera2.configure(picamera2.create_video_configuration(sensor={"output_size": (1640, 1232)},  main = {"format" : "RGB888"}))
 picamera2.start()
 time.sleep(2)
@@ -17,7 +18,7 @@ arucoDict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_50)
 arucoParams = cv2.aruco.DetectorParameters_create()
 
 # Init server adress
-server_address = "172.22.0.24"
+server_address = "172.22.0.86"
 server_port = 6944
 
 print("Setting up connection")
@@ -49,6 +50,7 @@ bottom_right_border = (border_coords[1][0], border_coords[0][1])
 # Detect cars and send them for identification
 print("Detecting cars...")
 cars = {}
+tempcars = {}
 for i in range(0, 10):
     frame = picamera2.capture_array()
     roi = frame[top_left_border[1]:bottom_right_border[1], top_left_border[0]:bottom_right_border[0]]
@@ -74,7 +76,7 @@ while True:
     frame = picamera2.capture_array()
     #roi = frame
     roi = frame[top_left_border[1]:bottom_right_border[1], top_left_border[0]:bottom_right_border[0]]
-    cv2.imshow("Frame: " ,roi)
+    #cv2.imshow("Frame: " , roi)
 
     (corners, ids, rejected) = cv2.aruco.detectMarkers(roi, arucoDict, parameters=arucoParams)
 
